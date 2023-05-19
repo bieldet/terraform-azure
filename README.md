@@ -1,2 +1,2 @@
-# terraformAzure
-Codigo Terraform para criação da infraestrutura na Azure
+# Terraform para Azure
+Neste repositorio estão os codigos que são utilizados para criação de uma infraestrutura dentro da azure!
