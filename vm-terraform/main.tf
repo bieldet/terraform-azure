@@ -1,10 +1,8 @@
-# Criação do Resource-Group
 resource "azurerm_resource_group" "rg" {
   location = var.location
   name     = var.resource_group_name
 }
 
-# Criação da Virtual Network
 resource "azurerm_virtual_network" "my_terraform_network" {
   name                = var.virtual_network_name
   address_space       = var.address_space
@@ -15,15 +13,13 @@ resource "azurerm_virtual_network" "my_terraform_network" {
 
 }
 
-# Criação da Subnet
 resource "azurerm_subnet" "my_terraform_subnet" {
   name                 = var.subnet_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
   address_prefixes     = var.address_prefixes
 }
-
-# Criação dos IP's Publicos 
+ 
 resource "azurerm_public_ip" "my_terraform_public_ip" {
   name                = var.public_ip_name
   location            = var.location
@@ -57,7 +53,6 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
   }
 }
 
-# Criação da interface de rede
 resource "azurerm_network_interface" "my_terraform_nic" {
   name                = var.nic_name
   location            = var.location
@@ -72,13 +67,11 @@ resource "azurerm_network_interface" "my_terraform_nic" {
   depends_on = [azurerm_resource_group.rg]
 }
 
-# Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "example" {
   network_interface_id      = azurerm_network_interface.my_terraform_nic.id
   network_security_group_id = azurerm_network_security_group.my_terraform_nsg.id
 }
 
-# Criação do storage account for boot diagnostics
 resource "azurerm_storage_account" "my_storage_account" {
   name                     = var.storage_account_name
   location                 = var.location
@@ -89,7 +82,6 @@ resource "azurerm_storage_account" "my_storage_account" {
   depends_on = [azurerm_resource_group.rg]
 }
 
-# Criação da Maquina virtual
 resource "azurerm_windows_virtual_machine" "main" {
   name                  = var.virtual_machine_name
   admin_username        = var.admin_username
