@@ -3,5 +3,6 @@ In this repository are the codes that are used to create an infrastructure withi
 
 In each folder there is a readme.md to have instructions to run terraform.
 
--- In the <strong> vm-terraform </strong> folder are the codes for creating a virtual machine created with terraform. (creation of the resource group, virtual network and others)
+-- In the <strong> vm-terraform </strong> folder are the codes for creating a virtual machine created with terraform. (creation of the resource group, virtual network and others).
 
+-- In the <strong> app-service </strong> folder, the Apps services and resource group in azure will be created.
